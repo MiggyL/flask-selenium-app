@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import time
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Flask Selenium App is running!"
 
 @app.route('/automate', methods=['POST'])
 def automate():
@@ -24,10 +25,6 @@ def automate():
 
     name_field.send_keys(row_data['name'])  # Fill the name field
     details_field.send_keys(f"Front Message: {row_data['name']}\nInside Message: {row_data['details']}\n\nCard Package...")
-
-    # Submit the form if needed
-    # submit_button = driver.find_element_by_name("submit")
-    # submit_button.click()
 
     driver.quit()
 
